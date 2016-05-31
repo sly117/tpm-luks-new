@@ -60,7 +60,7 @@
 #
 PCRS="4 5 8 9 10 11"
 TMPFILE=
-SOURCE=/sys/class/misc/tpm0/device/pcrs
+SOURCE=/sys/class/tpm/tpm0/device/pcrs
 OUTFILE=/dev/stdout
 
 if [ -z "${PCRS}" ]; then

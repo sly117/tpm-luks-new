@@ -78,13 +78,13 @@ function wipe_file
 
 function tpm_enabled
 {
-	if [ ! -e /sys/class/misc/tpm0/device/enabled ]; then
+	if [ ! -e /sys/class/tpm/tpm0/device/enabled ]; then
 		echo "ERROR: Your TPM device driver doesn't appear to be loaded. Please run"
 		echo "\`modprobe tpm_tis\` to load the driver and re-run this script"
 		exit 7
 	fi
 
-	if [ ! /sys/class/misc/tpm0/device/enabled ]; then
+	if [ ! /sys/class/tpm/tpm0/device/enabled ]; then
 		echo "ERROR: Your TPM is not enabled in your BIOS. Please halt the machine and"
 		echo "then cold boot into your BIOS to enable the TPM chip."
 		exit 8
@@ -95,7 +95,7 @@ function tpm_enabled
 
 function tpm_owned
 {
-	if [ $(cat /sys/class/misc/tpm0/device/owned) -ne 1 ]; then
+	if [ $(cat /sys/class/tpm/tpm0/device/owned) -ne 1 ]; then
 		echo "ERROR: Your TPM is unowned, please take ownership:"
 		tpm_takeownership || exit 9
 	fi
